@@ -42,7 +42,7 @@ PARSER = \
 Examples:
   --list # show list of projects (id: name)
   --list -H 127.0.0.1 -P 80 # specify hostname and port
-  --info 2161595260364 # show metadata of project 
+  --info 2161595260364 # show metadata of project
   --info "christmas gifts"
   --create example.csv # create new project from file example.csv
   --create example.tsv --encoding=UTF-8
@@ -57,7 +57,7 @@ Examples:
   --export --output=project.xlsx 2161595260364 # export project in xlsx format
   --export --output=project.xlsx "christmas gifts"
   --export "My Address Book" --template='{ "friend" : {{jsonize(cells["friend"].value)}}, "address" : {{jsonize(cells["address"].value)}} }' --prefix='{ "rows" : [' --rowSeparator ',' --suffix '] }' --filterQuery="^mary$"
-  --delete 2161595260364 # delete project 
+  --delete 2161595260364 # delete project
   --delete "christmas gifts"
 """)
 
@@ -129,7 +129,7 @@ PARSER.add_option_group(group4)
 
 group5 = optparse.OptionGroup(PARSER, 'Legacy options')
 group5.add_option('--format', dest='input_format',
-help='Specify input format (csv,tsv,xml,json,line-based,fixed-width,xls,xlsx,ods)')
+help='Specify input format (csv,csv2, tsv,xml,json,line-based,fixed-width,xls,xlsx,ods)')
 PARSER.add_option_group(group5)
 
 group6= optparse.OptionGroup(PARSER, 'Templating export options')
@@ -184,6 +184,7 @@ def create_project(options):
     defaults = {}
     defaults['xml'] = { 'project_format' : 'text/xml', 'recordPath' : 'record' }
     defaults['csv'] = { 'project_format' : 'text/line-based/*sv', 'separator' : ',' }
+    defaults['csv2'] = { 'project_format' : 'text/line-based/*sv', 'separator' : ';' }
     defaults['tsv'] = { 'project_format' : 'text/line-based/*sv', 'separator' : '\t' }
     defaults['line-based'] = { 'project_format' : 'text/line-based', 'skipDataLines' : -1 }
     defaults['fixed-width'] = { 'project_format' : 'text/line-based/fixed-width', 'headerLines' : 0 }
